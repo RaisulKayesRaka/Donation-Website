@@ -16,7 +16,6 @@ document.getElementById("donateBtn").addEventListener("click", function () {
         .classList.add("text-[#111111]/30", "border", "border-[#111111]/30");
 });
 
-
 document.getElementById("historyBtn").addEventListener("click", function () {
     historySection.classList.remove("hidden");
     donateSection.classList.add("hidden");
@@ -30,15 +29,18 @@ document.getElementById("historyBtn").addEventListener("click", function () {
         .classList.add("text-[#111111]/30", "border", "border-[#111111]/30");
 });
 
-
 let balance = Number(balanceElement.innerText);
 
 function isValidAmount(amount) {
-    if (amount === "" || isNaN(amount) || amount <= 0) {
+    if (amount === "") {
+        alert("Please enter an amount!");
+        return false;
+    } else if (isNaN(amount) || amount <= 0) {
         alert("Invalid amount!");
         return false;
     } else if (amount > balance) {
         alert("Not enough balance!");
+        return false;
     } else {
         return true;
     }
@@ -46,7 +48,14 @@ function isValidAmount(amount) {
 
 function insertInHistory(amount, title) {
     const historyCard = document.createElement("div");
-    historyCard.classList.add("border", "border-[#111111]/10", "p-4", "md:p-6", "lg:p-8", "rounded-2xl");
+    historyCard.classList.add(
+        "border",
+        "border-[#111111]/10",
+        "p-4",
+        "md:p-6",
+        "lg:p-8",
+        "rounded-2xl"
+    );
     historyCard.innerHTML = `
                 <h3 class="mb-4 text-lg md:text-xl font-bold text-[#111111]">
                     ${amount} Taka is donated for ${title}
@@ -77,6 +86,6 @@ for (const button of donateNowButtons) {
     });
 }
 
-document.getElementById("closeModal").addEventListener('click',function(){
+document.getElementById("closeModal").addEventListener("click", function () {
     modal.classList.add("hidden");
-})
+});
