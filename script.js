@@ -32,10 +32,7 @@ document.getElementById("historyBtn").addEventListener("click", function () {
 let balance = Number(balanceElement.innerText);
 
 function isValidAmount(amount) {
-    if (amount === "") {
-        alert("Please enter an amount!");
-        return false;
-    } else if (isNaN(amount) || amount <= 0) {
+    if (amount == "" || isNaN(amount) || amount <= 0) {
         alert("Invalid amount!");
         return false;
     } else if (amount > balance) {
